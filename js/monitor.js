@@ -4,7 +4,7 @@ var nebPay = new NebPay();
 
 
 
-var dappAddress = "n1iwrbA5iaypdCXQNCWzgFMtT8wucbY1pGg";
+var dappAddress = "n1u5sbNobZebPbqT5skjdkSA8NUwH3ynXyS";
 
 
 var bdsh = ["话费充值","外卖预定","医院挂号","家政服务","同城搬家","短期租房"];
