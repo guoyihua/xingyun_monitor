@@ -4,7 +4,7 @@ var nebPay = new NebPay();
 
 
 
-var dappAddress = "n1ySF15hgZUnVgfLeoR1qSxi8y4LKSdcTeV";
+var dappAddress = "n1iwrbA5iaypdCXQNCWzgFMtT8wucbY1pGg";
 
 q("getAllBook");
 function q(fun){
@@ -20,26 +20,35 @@ function q(fun){
 }
 
 function cbSearch(resp) {
-    var result = resp.result    ////resp is an object, resp.result is a JSON string
-    console.log("return of rpc call: " + JSON.stringify(result))
+    var result = resp.result;//.substring(1,resp.result.length-1);  ////resp is an object, resp.result is a JSON string
+	result = eval("("+result+")");
+	var result = JSON.parse(result);
+	console.log("return of rpc call: " + JSON.stringify(result))
     $('.item-title').each(function(){
-		//if($(this).text().trim()==)
+		for(var k in result) {
+			if($(this).text().trim()==k){
+				$(this).attr("count",result[k]);
+			}
+			
+		}
 	})
 }
 
 
 function doSomething(a){
-	hfcz=0;
-	if($(a).text().trim()=='话费充值'){
+	hfcz=$(a).attr("count");
+	if(hfcz==undefined){
+		hfcz=1;
+	}else{
 		hfcz++;
 	}
 	var to = dappAddress;
 	var value = "0";
 	var callFunction = "submit"
 	var name = $(a).text().trim();
-	var type = $(a).parents().find("span[class='tool-type']").attr("tooltype");
-	var tcount = 0;
-	var ncount = 1;
+	// var type = $(a).parents().find("span[class='tool-type']").attr("tooltype");
+	// var tcount = 0;
+	var ncount = hfcz;
 	var callArgs = "[\"" + ncount +"\",\"" + name + "\"]"
 	nebPay.call(to, value, callFunction, callArgs, {    
 		listener: cbPush
