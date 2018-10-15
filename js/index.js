@@ -4,7 +4,7 @@ var nebPay = new NebPay();
 
 
 
-var dappAddress = "n1u5sbNobZebPbqT5skjdkSA8NUwH3ynXyS";
+var dappAddress = "n1sYYSNjWsawTCLhYAY8vmQvw7siUGQb9s6";
 
 q("getAllBook");
 function q(fun){
